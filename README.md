@@ -219,15 +219,15 @@ Camera không tự động gửi gì nếu không nhận được lệnh.
 | Mini R4 | 1 byte lệnh (`'G'` hoặc `'L'`) | Camera |
 | Camera | 4 byte dữ liệu khối màu | Mini R4 |
 
-
+Sau khi nhận 'L', camera gọi green_led.on() — bật đèn LED xanh trên board. Hết, không làm gì thêm, không trả dữ liệu về.
 Sau khi nhận lệnh `'G'`, camera trả về một gói gồm 4 giá trị:
 
-| Vị trí | Tên | Ý nghĩa |
-|:------:|:----|:--------|
-| 0 | ID màu | `0` = đỏ, `1` = xanh, `255` = không thấy khối |
-| 1 | `x` | Tọa độ ngang tâm khối |
-| 2 | `y` | Tọa độ dọc tâm khối (càng lớn = càng gần robot) |
-| 3 | Diện tích | Kích thước khối trong khung hình |
+| Vị trí | Tên | Ý nghĩa | Sử dụng |
+|:------:|:----|:--------|:--------|
+| 0 | ID màu | `0` = đỏ, `1` = xanh, `255` = không thấy | Chọn hướng tránh |
+| 1 | `x` | Vị trí ngang tâm khối (0–320) | Tính góc lái |
+| 2 | `y` | Vị trí dọc tâm khối (0–240) | Lọc khối ở xa qua `Y_IGNOR` |
+| 3 | Diện tích | Kích thước khối trong khung hình | Chưa dùng — dự phòng |
 
 Mini R4 lưu gói tin này vào mảng `camData[]`.
 
@@ -253,6 +253,17 @@ if (camData[2] > Y_IGNOR) {
     // Chỉ xử lý khi khối đủ gần (y > 50)
 }
 ```
+##### Ý nghĩa tọa độ
+
+Khung hình QVGA: **320 × 240** pixel, gốc tọa độ ở góc trên trái.
+
+| Giá trị | Khoảng | Ý nghĩa |
+|:--------|:-------|:--------|
+| `x` | 0 – 320 | Vị trí ngang. Tâm khung hình là `160`. Nhỏ hơn = khối lệch trái, lớn hơn = lệch phải |
+| `y` | 0 – 240 | Vị trí dọc. Càng lớn = khối càng gần robot |
+
+Khi có nhiều khối trong khung hình, camera chỉ trả về khối có `y` lớn nhất
+(gần robot nhất).
 
 ## License
 
