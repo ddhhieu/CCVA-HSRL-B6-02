@@ -7,8 +7,6 @@
 Chương trình điều khiển robot tự hành sử dụng Matrix Mini R4, bộ công cụ MATRIX WRO Future Innovators Set V2. Robot thực hiện nhiệm vụ di chuyển theo luật thi đấu bảng B6 - WRO 2026 với hai vòng thi Open Challenge và Obstacle Challenge, sử dụng laser sensor V2, color sensor V3 và M-vision camera.
 
 
----
----
 
 ##  Giới Thiệu Đội Nhóm (Team B6-02)
 
