@@ -16,7 +16,7 @@ Nhóm **B6-02** bao gồm các thành viên sau
 | STT | Họ và tên | Vai trò | GitHub |
 |:---:|:----------|:--------|:-------|
 | 1 | Đào Đức Hiếu  | Leader / Repository Maintainer | [@ddhhieu](https://github.com/ddhhieu) |
-| 2 | Huy Nguyễn | Developer / Technical Specialist | [@huynguyen123qn6-prog](https://github.com/huynguyen123qn6-prog) |
+| 2 | Nguyễn Viết Quang Huy | Developer / Technical Specialist | [@huynguyen123qn6-prog](https://github.com/huynguyen123qn6-prog) |
 | 3 | Quang Tùng | Developer / Tester | — |
 
 ## Mục tiêu chính: ##
@@ -171,94 +171,22 @@ void DiNguocChieuKimDongHo();       // Chạy ngược chiều kim đồng hồ
 ---
 ### Vòng 2 — Obstacle Challenge
 
-Robot chạy 3 vòng quanh sa bàn. Trên đường có các khối màu:
-
-- **Khối đỏ** → robot đi vòng qua bên phải khối
-- **Khối xanh lá** → robot đi vòng qua bên trái khối
-
-Không được đụng làm khối đổ hay lệch chỗ.
-
-Để làm được, robot dùng 3 cảm biến:
-
-- **Laser** đo khoảng cách tới tường → giữ xe chạy giữa làn, không đâm tường
-- **Camera** nhìn thấy khối màu gì, ở đâu → quyết định né trái hay né phải
-- **Cảm biến màu** đọc vạch dưới sàn → đếm đủ 3 vòng thì dừng
-
 #### Robot cần làm những việc gì
+
 **1. Bám tường**
 
 Đọc laser, tính xem xe đang cách tường bao nhiêu, rồi bẻ lái cho xe về đúng
-khoảng cách mong muốn. Chạy liên tục suốt lượt.
+khoảng cách mong muốn.
 
 ```cpp
-void doduong_laser_phai(float khoang_cach, float kp, float kd) {
-  float error = MiniR4.I2C2.MXLaserV2.getDistance() / 10 - khoang_cach;
-  float D = error - last_error;
-  float PID = error * kp + D * kd;
-  servoMotor(PID, 45);
-  last_error = error;
-}
+void doduong_laser_trai(float khoang_cach, float kp, float kd);
+void doduong_laser_phai(float khoang_cach, float kp, float kd);
 ```
+---
 
 **2. Né khối**
 
-Hỏi camera xem có khối không. Nếu có khối đủ gần thì: khối đỏ bẻ lái sang trái,
-khối xanh bẻ lái sang phải. Khối càng lệch khỏi giữa khung hình thì bẻ lái càng gắt.
-
-**3. Đếm vòng**
-
-Đọc cảm biến màu. Mỗi lần đi qua vạch cam hoặc xanh dương thì cộng 1.
-Đếm đủ 12 vạch là xong 3 vòng, cho xe dừng.
-
-```cpp
-void line_check() {
-  line_color = MiniR4.I2C3.MXColorV3.getColorID();
-
-  if ((abs(cnt_degrees - MiniR4.M1.getDegrees()) * d / 360 > 100
-       and (line_color == 9 or line_color == 3))
-      or (cnt == 0 and (line_color == 9 or line_color == 3))) {
-    cnt++;
-    cnt_degrees = MiniR4.M1.getDegrees();
-  }
-}
-```
-
-**4. Qua góc sa bàn**
-
-Khi tới góc, xe phải rẽ, đồng thời quét camera xem đoạn tiếp theo có khối nào không.
-**5. Giao tiếp với camera**
-
-Mini R4 hỏi trước, camera trả lời sau. Camera không tự gửi gì cả.
-
-Mini R4 gửi 1 chữ cái:
-
-- **`'G'`** → camera chụp ảnh, tìm khối, gửi về 4 số
-- **`'L'`** → camera bật đèn LED xanh (kiểm tra kết nối), không gửi gì về
-
-4 số camera gửi về được lưu vào mảng `camData[]`:
-
-| Vị trí | Ý nghĩa |
-|:------:|:--------|
-| `camData[0]` | Màu khối: `0` đỏ, `1` xanh, `255` không thấy |
-| `camData[1]` | Vị trí ngang trong khung hình (0–320, giữa là 160) |
-| `camData[2]` | Vị trí dọc (càng lớn = khối càng gần robot) |
-| `camData[3]` | Diện tích khối — hiện chưa dùng |
-
-Khung hình QVGA 320 × 240 pixel, gốc tọa độ ở góc trên trái.
-
-**Ví dụ xử lý:**
-
-```cpp
-if (camData[2] > Y_IGNOR) {      // Chỉ xử lý khối đủ gần
-    if (camData[0] == 0) {
-        // Khối đỏ → tránh sang trái
-    }
-    else if (camData[0] == 1) {
-        // Khối xanh → tránh sang phải
-    }
-}
-```
-**6. Điều khiển servo lái**
+Hỏi camera có khối không, rồi bẻ lái sang bên tương ứng.
 
 ```cpp
 void servoMotor(float value, float l = 70);
@@ -267,7 +195,56 @@ void servoMotor(float value, float l = 70);
 | Tham số | Đơn vị | Mô tả |
 |:--------|:-------|:------|
 | `value` | độ | Góc muốn xoay (`0` = đi thẳng, âm = trái, dương = phải) |
-| `l` | độ | Giới hạn góc xoay tối đa, mặc định 70 |
+| `l` | độ | Giới hạn góc xoay tối đa |
+
+Góc lái được tính từ độ lệch của khối so với vị trí ngắm:
+
+| Tình huống | Vị trí ngắm | Ý nghĩa |
+|:-----------|:-----------:|:--------|
+| Khối còn xa (`y < 100`) | 160 (giữa) | Lái cho khối vào giữa khung hình |
+| Khối đỏ đã gần | `green` | Ngắm lệch để đi qua bên phải khối |
+| Khối xanh đã gần | `red` | Ngắm lệch để đi qua bên trái khối |
+
+---
+
+**3. Đếm vòng**
+
+Đọc cảm biến màu, gặp vạch cam hoặc xanh dương thì cộng 1.
+
+```cpp
+void line_check();
+```
+
+Tăng biến đếm `cnt` khi gặp vạch xanh (ID 3) hoặc cam (ID 9). Hai lần đếm phải
+cách nhau ít nhất 100 cm để không đếm trùng. Đếm đủ `DOOR = 12` vạch thì dừng xe.
+
+---
+
+**4. Qua góc sa bàn**
+
+Khi tới góc, xe phải rẽ và quét camera tìm khối tiếp theo.
+
+```cpp
+bool turn();
+```
+
+**Trả về:** `true` nếu robot đang ở góc sa bàn.
+
+Nếu camera không thấy khối nào, robot vừa đi vừa xoay góc lái rộng dần
+(15° → 45°) để quét, tối đa 30 cm. Quét xong vẫn không thấy thì lùi lại một
+chút rồi đi tiếp.
+
+```cpp
+bool dichuyen_cm(float quang_duong);
+```
+
+| Tham số | Đơn vị | Mô tả |
+|:--------|:-------|:------|
+| `quang_duong` | cm | Quãng đường cần đi, đo bằng encoder |
+
+**Trả về:** `false` nếu bị ngắt giữa chừng do gặp góc sa bàn, `true` nếu đi đủ.
+
+Dùng để đi mù một đoạn — nếu giữa chừng gặp khối thì bỏ dở để bám khối.
 
 ## License
 
