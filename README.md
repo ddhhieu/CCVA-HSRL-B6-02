@@ -82,7 +82,7 @@ Vào https://github.com/ddhhieu/CCVA-HSRL-B6-02 → bấm **Code** → **Downloa
 
 Thực hiện theo hướng dẫn lắp ráp chi tiết:
 
-[Slide lắp ráp (PDF)](https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf)
+[Slide lắp ráp (PDF)](https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide_lap_rap/Slide_huong_dan_lap_rap.pdf)
 
 ### 4. Nạp chương trình cho MATRIX Mini R4
 
