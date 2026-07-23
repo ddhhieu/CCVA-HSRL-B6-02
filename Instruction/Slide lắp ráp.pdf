@@ -1,1 +1,13 @@
- [Xem Slide lắp ráp (PDF)](https://drive.google.com/file/d/1tujBUSkKCRA1dCgU0yYDgEdmG0CxrV2Y/view?usp=sharing)
+# Cài đặt/Khởi tạo Git LFS nếu chưa có
+git lfs install
+
+# Theo dõi các file PDF bằng LFS
+git lfs track "*.pdf"
+
+# Đảm bảo file .gitattributes được lưu
+git add .gitattributes
+
+# Đẩy lại file PDF
+git add "Instruction/Slide lắp ráp.pdf"
+git commit -m "Fix PDF upload with LFS"
+git push origin main
