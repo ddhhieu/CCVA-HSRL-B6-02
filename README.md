@@ -32,7 +32,10 @@ Dự án **CCVA-HSRL-B6-02** tập trung nghiên cứu, phát triển và triể
 
 # 1. Tải dự án về máy
 [https://github.com/ddhhieu/CCVA-HSRL-B6-02.git](https://github.com/ddhhieu/CCVA-HSRL-B6-02.git)
+```cpp
 cd CCVA-HSRL-B6-02
+```
+
  # 2. lắp ráp robot
     [https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf]
 
