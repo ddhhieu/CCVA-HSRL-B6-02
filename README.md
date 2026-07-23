@@ -180,9 +180,131 @@ void DiNguocChieuKimDongHo();       // Chạy ngược chiều kim đồng hồ
 | `Kd` | Nhạy nhiễu cảm biến | Rung khi vào cua |
 
 Quy trình khuyến nghị: tăng `Kp` đến khi bắt đầu dao động → thêm `Kd` để dập dao động → thêm `Ki` nếu còn sai số xác lập.
-#### Vòng 2 bstacle Challenge
 
-*(Đang phát triển — bổ sung bảng hàm và mô tả chức năng khi hoàn thiện)*
+#### Vòng 2 — Obstacle Challenge
+
+Robot bám tường bằng laser sensor, đếm vòng bằng color sensor và nhận diện khối màu bằng M-vision camera.
+
+#### Hằng số cấu hình
+
+| Hằng số | Giá trị | Ý nghĩa |
+|:--------|:-------:|:--------|
+| `Y_IGNOR` | 50 | Ngưỡng tọa độ Y tối thiểu để xử lý khối. Khối ở xa hơn sẽ bị bỏ qua |
+| `DOOR` | 12 | Số vạch màu cần đếm để kết thúc lượt chạy |
+| `d` | 19.6 | Chu vi bánh xe (cm), dùng quy đổi góc encoder sang quãng đường |
+
+#### Giới hạn giá trị
+
+```cpp
+float limit(float value, float min, float max);
+```
+
+| Tham số | Đơn vị | Mô tả |
+|:--------|:-------|:------|
+| `value` | — | Giá trị cần giới hạn |
+| `min` | — | Cận dưới |
+| `max` | — | Cận trên |
+
+Trả về giá trị đã được kẹp trong khoảng `[min, max]`, dùng trước khi điều khiển góc lái.
+
+#### Điều khiển servo lái
+
+```cpp
+void servoMotor(float value, float l = 70);
+```
+
+| Tham số | Đơn vị | Mô tả |
+|:--------|:-------|:------|
+| `value` | độ | Góc muốn xoay (`0` = đi thẳng) |
+| `l` | độ | Giới hạn góc xoay tối đa, mặc định 70 |
+
+#### Bám tường trái
+
+```cpp
+void doduong_laser_trai(float khoang_cach, float kp, float kd);
+```
+
+| Tham số | Đơn vị | Mô tả |
+|:--------|:-------|:------|
+| `khoang_cach` | cm | Khoảng cách mong muốn tới tường trái |
+| `kp`, `kd` | — | Hệ số bộ điều khiển PD |
+
+#### Bám tường phải
+
+```cpp
+void doduong_laser_phai(float khoang_cach, float kp, float kd);
+```
+
+Tham số tương tự bám tường trái, đọc dữ liệu từ laser sensor bên phải.
+
+#### Đếm vạch màu
+
+```cpp
+void line_check();
+```
+
+Đọc color sensor, tăng biến đếm khi robot đi qua vạch xanh hoặc cam. Có kiểm tra quãng đường tối thiểu giữa hai lần đếm để tránh đếm trùng.
+
+#### Xử lý góc sa bàn
+
+```cpp
+bool turn();
+```
+
+Khi robot tới góc sa bàn, thực hiện quét camera tìm khối tiếp theo và điều chỉnh hướng di chuyển. Trả về `true` nếu đã tới góc sa bàn.
+
+#### Di chuyển theo quãng đường
+
+```cpp
+bool dichuyen_cm(float quang_duong);
+```
+
+| Tham số | Đơn vị | Mô tả |
+|:--------|:-------|:------|
+| `quang_duong` | cm | Quãng đường cần di chuyển, đo bằng encoder |
+
+Trả về `false` nếu bị ngắt giữa chừng do gặp góc sa bàn.
+
+#### Hoàn tất tránh khối
+
+```cpp
+void last_step(bool check = true);
+```
+
+| Tham số | Mô tả |
+|:--------|:------|
+| `check` | Cho phép thực hiện thao tác đánh lái bù sau khi vượt khối |
+
+Thực hiện thao tác hoàn tất sau khi robot vượt qua hoặc tránh một khối chướng ngại vật.
+
+#### Kịch bản chạy vòng 2
+
+```cpp
+void setup();   // Khởi tạo bộ điều khiển, laser, color sensor và camera
+void loop();    // Chương trình điều khiển chính vòng Obstacle Challenge
+```
+
+#### Chức năng chương trình
+
+1. Chờ nhấn nút **UP** để bắt đầu (nút **DOWN** vào chế độ kiểm tra dữ liệu camera)
+2. So sánh khoảng cách hai bên laser để xác định chiều chạy của sân
+3. Thực hiện chuỗi thao tác rời vị trí xuất phát
+4. Vòng lặp chính:
+   - Không có khối → bám tường bằng bộ điều khiển PD
+   - Phát hiện khối → tiếp cận, căn theo tọa độ X của khối
+   - Khối **xanh** → tránh về một phía; khối **đỏ** → tránh về phía còn lại
+   - Đếm vạch màu bằng color sensor
+5. Cơ chế chống kẹt: nếu encoder không đổi quá 300 ms, robot lùi lại và đánh lái thoát ra
+6. Dừng khi đếm đủ `DOOR` vạch màu
+
+#### Thông số PD bám tường
+
+| Chiều chạy | Tường bám | Khoảng cách mục tiêu | Kp | Kd |
+|:-----------|:----------|:--------------------:|:--:|:--:|
+| Thuận chiều kim đồng hồ | Trái | 63 cm | 0.6 | 2 |
+| Ngược chiều kim đồng hồ | Phải | 60 cm | 1.4 | 2 |
+
+> Vòng 2 dùng bộ điều khiển **PD**, không có thành phần tích phân `Ki` như vòng 1.
 
 ---
 
