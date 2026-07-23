@@ -185,20 +185,47 @@ Không được đụng làm khối đổ hay lệch chỗ.
 - **Cảm biến màu** đọc vạch dưới sàn → đếm đủ 3 vòng thì dừng
 
 #### Robot cần làm những việc gì
+**1. Bám tường**
 
-**1. Bám tường** — Đọc laser, tính xem xe đang cách tường bao nhiêu, rồi bẻ lái
-cho xe về đúng khoảng cách mong muốn. Chạy liên tục suốt lượt.
+Đọc laser, tính xem xe đang cách tường bao nhiêu, rồi bẻ lái cho xe về đúng
+khoảng cách mong muốn. Chạy liên tục suốt lượt.
 
-**2. Né khối** — Hỏi camera xem có khối không. Nếu có khối đủ gần thì:
-khối đỏ bẻ lái sang trái, khối xanh bẻ lái sang phải.
-Khối càng lệch khỏi giữa khung hình thì bẻ lái càng gắt.
+```cpp
+void doduong_laser_phai(float khoang_cach, float kp, float kd) {
+  float error = MiniR4.I2C2.MXLaserV2.getDistance() / 10 - khoang_cach;
+  float D = error - last_error;
+  float PID = error * kp + D * kd;
+  servoMotor(PID, 45);
+  last_error = error;
+}
+```
 
-**3. Đếm vòng** — Đọc cảm biến màu. Mỗi lần đi qua vạch cam hoặc xanh dương
-thì cộng 1. Đếm đủ 12 vạch là xong 3 vòng, cho xe dừng.
+**2. Né khối**
 
-**4. Qua góc sa bàn** — Khi tới góc, xe phải rẽ, đồng thời quét camera xem
-đoạn tiếp theo có khối nào không.
+Hỏi camera xem có khối không. Nếu có khối đủ gần thì: khối đỏ bẻ lái sang trái,
+khối xanh bẻ lái sang phải. Khối càng lệch khỏi giữa khung hình thì bẻ lái càng gắt.
 
+**3. Đếm vòng**
+
+Đọc cảm biến màu. Mỗi lần đi qua vạch cam hoặc xanh dương thì cộng 1.
+Đếm đủ 12 vạch là xong 3 vòng, cho xe dừng.
+
+```cpp
+void line_check() {
+  line_color = MiniR4.I2C3.MXColorV3.getColorID();
+
+  if ((abs(cnt_degrees - MiniR4.M1.getDegrees()) * d / 360 > 100
+       and (line_color == 9 or line_color == 3))
+      or (cnt == 0 and (line_color == 9 or line_color == 3))) {
+    cnt++;
+    cnt_degrees = MiniR4.M1.getDegrees();
+  }
+}
+```
+
+**4. Qua góc sa bàn**
+
+Khi tới góc, xe phải rẽ, đồng thời quét camera xem đoạn tiếp theo có khối nào không.
 **5. Giao tiếp với camera**
 
 Mini R4 hỏi trước, camera trả lời sau. Camera không tự gửi gì cả.
