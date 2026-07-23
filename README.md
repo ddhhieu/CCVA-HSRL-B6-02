@@ -169,102 +169,103 @@ void Di_cung_chieu_kim_dong_ho();   // Chạy thuận chiều kim đồng hồ
 void DiNguocChieuKimDongHo();       // Chạy ngược chiều kim đồng hồ
 ```
 ---
-
-
-
 ### Vòng 2 — Obstacle Challenge
 
-Robot bám tường bằng laser sensor, đếm vòng bằng color sensor và nhận diện khối màu bằng M-vision camera.
+Robot chạy 3 vòng quanh sa bàn. Trên đường có các khối màu:
 
-Mini R4 đóng vai trò chủ động: gửi lệnh trước, camera trả dữ liệu sau.
-Camera không tự động gửi gì nếu không nhận được lệnh.
+- **Khối đỏ** → robot đi vòng qua bên phải khối
+- **Khối xanh lá** → robot đi vòng qua bên trái khối
 
-| Bên gửi | Nội dung | Bên nhận |
-|:--------|:---------|:---------|
-| Mini R4 | 1 byte lệnh (`'G'` hoặc `'L'`) | Camera |
-| Camera | 4 byte dữ liệu khối màu | Mini R4 |
+Không được đụng làm khối đổ hay lệch chỗ.
 
-Sau khi nhận 'L', camera gọi green_led.on() — bật đèn LED xanh trên board. Hết, không làm gì thêm, không trả dữ liệu về.
+Để làm được, robot dùng 3 cảm biến:
 
-Sau khi nhận lệnh `'G'`, camera trả về một gói gồm 4 giá trị:
+- **Laser** đo khoảng cách tới tường → giữ xe chạy giữa làn, không đâm tường
+- **Camera** nhìn thấy khối màu gì, ở đâu → quyết định né trái hay né phải
+- **Cảm biến màu** đọc vạch dưới sàn → đếm đủ 3 vòng thì dừng
 
-| Vị trí | Tên | Ý nghĩa | Sử dụng |
-|:------:|:----|:--------|:--------|
-| 0 | ID màu | `0` = đỏ, `1` = xanh, `255` = không thấy | Chọn hướng tránh |
-| 1 | `x` | Vị trí ngang tâm khối (0–320) | Tính góc lái |
-| 2 | `y` | Vị trí dọc tâm khối (0–240) | Lọc khối ở xa qua `Y_IGNOR` |
-| 3 | Diện tích | Kích thước khối trong khung hình | Chưa dùng — dự phòng |
+#### Robot cần làm những việc gì
 
-Mini R4 lưu gói tin này vào mảng `camData[]`.
+**1. Bám tường** — Đọc laser, tính xem xe đang cách tường bao nhiêu, rồi bẻ lái
+cho xe về đúng khoảng cách mong muốn. Chạy liên tục suốt lượt.
 
-**Đọc và xử lý:**
+**2. Né khối** — Hỏi camera xem có khối không. Nếu có khối đủ gần thì:
+khối đỏ bẻ lái sang trái, khối xanh bẻ lái sang phải.
+Khối càng lệch khỏi giữa khung hình thì bẻ lái càng gắt.
+
+**3. Đếm vòng** — Đọc cảm biến màu. Mỗi lần đi qua vạch cam hoặc xanh dương
+thì cộng 1. Đếm đủ 12 vạch là xong 3 vòng, cho xe dừng.
+
+**4. Qua góc sa bàn** — Khi tới góc, xe phải rẽ, đồng thời quét camera xem
+đoạn tiếp theo có khối nào không.
+
+#### Giao tiếp với camera
+
+Mini R4 hỏi trước, camera trả lời sau. Camera không tự gửi gì cả.
+
+Mini R4 gửi 1 chữ cái:
+
+- **`'G'`** → camera chụp ảnh, tìm khối, gửi về 4 số
+- **`'L'`** → camera bật đèn LED xanh (kiểm tra kết nối), không gửi gì về
+
+4 số camera gửi về được lưu vào mảng `camData[]`:
+
+| Vị trí | Ý nghĩa |
+|:------:|:--------|
+| `camData[0]` | Màu khối: `0` đỏ, `1` xanh, `255` không thấy |
+| `camData[1]` | Vị trí ngang trong khung hình (0–320, giữa là 160) |
+| `camData[2]` | Vị trí dọc (càng lớn = khối càng gần robot) |
+| `camData[3]` | Diện tích khối — hiện chưa dùng |
+
+Khung hình QVGA 320 × 240 pixel, gốc tọa độ ở góc trên trái.
+
+**Ví dụ xử lý:**
 
 ```cpp
-// Kiểm tra có thấy khối không
-if (camData[0] == 255) {
-    // Không có khối nào trong tầm nhìn
-}
-else if (camData[0] == 0) {
-    // Khối đỏ → tránh sang trái
-}
-else if (camData[0] == 1) {
-    // Khối xanh → tránh sang phải
+if (camData[2] > Y_IGNOR) {      // Chỉ xử lý khối đủ gần
+    if (camData[0] == 0) {
+        // Khối đỏ → tránh sang trái
+    }
+    else if (camData[0] == 1) {
+        // Khối xanh → tránh sang phải
+    }
 }
 ```
-
-**Lọc khối ở xa:**
-
-```cpp
-if (camData[2] > Y_IGNOR) {
-    // Chỉ xử lý khi khối đủ gần (y > 50)
-}
-```
-##### Ý nghĩa tọa độ
-
-Khung hình QVGA: **320 × 240** pixel, gốc tọa độ ở góc trên trái.
-
-| Giá trị | Khoảng | Ý nghĩa |
-|:--------|:-------|:--------|
-| `x` | 0 – 320 | Vị trí ngang. Tâm khung hình là `160`. Nhỏ hơn = khối lệch trái, lớn hơn = lệch phải |
-| `y` | 0 – 240 | Vị trí dọc. Càng lớn = khối càng gần robot |
-
 
 #### Hằng số cấu hình
 
 | Hằng số | Giá trị | Ý nghĩa |
 |:--------|:-------:|:--------|
-| `Y_IGNOR` | 50 | Ngưỡng tọa độ Y tối thiểu để xử lý khối. Khối ở xa hơn sẽ bị bỏ qua |
+| `Y_IGNOR` | 50 | Khối có `camData[2]` nhỏ hơn giá trị này là ở quá xa, bỏ qua |
 | `DOOR` | 12 | Số vạch màu cần đếm để kết thúc lượt chạy |
-| `d` | 19.6 | Chu vi bánh xe (cm), dùng quy đổi góc encoder sang quãng đường |
+| `d` | 19.6 | Chu vi bánh xe (cm), quy đổi góc encoder sang quãng đường |
 
-#### Giới hạn giá trị
+#### Các hàm chính
+
+**Giới hạn giá trị**
 
 ```cpp
 float limit(float value, float min, float max);
 ```
 
-| Tham số | Đơn vị | Mô tả |
-|:--------|:-------|:------|
-| `value` | — | Giá trị cần giới hạn |
-| `min` | — | Cận dưới |
-| `max` | — | Cận trên |
+Kẹp `value` trong khoảng `[min, max]`. Dùng trước khi điều khiển góc lái.
 
-Trả về giá trị đã được kẹp trong khoảng `[min, max]`, dùng trước khi điều khiển góc lái.
-
-#### Điều khiển servo lái
+**Điều khiển servo lái**
 
 ```cpp
 void servoMotor(float value, float l = 70);
 ```
+
 | Tham số | Đơn vị | Mô tả |
 |:--------|:-------|:------|
-| `value` | độ | Góc muốn xoay (`0` = đi thẳng) |
+| `value` | độ | Góc muốn xoay (`0` = đi thẳng, âm = trái, dương = phải) |
 | `l` | độ | Giới hạn góc xoay tối đa, mặc định 70 |
-
 
 ## License
 
 Dự án được phát hành theo giấy phép [MIT](LICENSE).
+
+.
 
 
  
