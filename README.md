@@ -4,10 +4,11 @@
 [![Repo Status](https://img.shields.io/badge/Status-In_Progress-orange.svg)]()
 [![Team](https://img.shields.io/badge/Team-B6--02-brightgreen.svg)]()
 
-Chương trình điều khiển robot tự hành sử dụng Matrix Mini R4, bộ công cụ MATRIX WRO Future Innovators Set V2. Robot thực hiện nhiệm vụ di chuyển theo luật thi đấu bảng B6 - WRO 2026 với hai vòng thi Open Challenge và Obstacle Challenge, sử dụng laser sensor V2, color sensor V3 và M-vision camera.
 
 
+##  Giới Thiệu Dự Án
 
+Dự án **CCVA-HSRL-B6-02** phát triển robot tự hành trên nền tảng MATRIX Mini R4, sử dụng bộ công cụ MATRIX WRO Future Innovators Set V2. Robot thực hiện nhiệm vụ di chuyển theo luật thi đấu bảng B6 - WRO 2026 với hai vòng thi Open Challenge và Obstacle Challenge, sử dụng laser sensor V2, color sensor V3 và M-vision camera.
 ##  Giới Thiệu Đội Nhóm (Team B6-02)
 
 Nhóm **B6-02** bao gồm các thành viên sau 
@@ -17,11 +18,6 @@ Nhóm **B6-02** bao gồm các thành viên sau
 | 1 | Đỗ Hoàng Hiếu | Leader / Repository Maintainer | [@ddhhieu](https://github.com/ddhhieu) |
 | 2 | Huy Nguyễn | Developer / Technical Specialist | [@huynguyen123qn6-prog](https://github.com/huynguyen123qn6-prog) |
 | 3 | Quang Tùng | Developer / Tester | — |
-
-
-##  Giới Thiệu Dự Án
-
-Dự án **CCVA-HSRL-B6-02** phát triển robot tự hành trên nền tảng MATRIX Mini R4, sử dụng bộ công cụ MATRIX WRO Future Innovators Set V2. Robot thực hiện nhiệm vụ di chuyển theo luật thi đấu bảng B6 - WRO 2026 với hai vòng thi Open Challenge và Obstacle Challenge, sử dụng laser sensor V2, color sensor V3 và M-vision camera.
 
 **Mục tiêu chính:**
 - Xây dựng robot tự hành trên nền tảng MATRIX Mini R4 đáp ứng luật thi bảng B6 - WRO 2026.
