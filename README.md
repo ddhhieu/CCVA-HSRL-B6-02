@@ -53,15 +53,20 @@ cd CCVA-HSRL-B6-02
     [https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf]
 
     
-    link tải https://www.bricklink.com/v3/studio/download.page
+
  # 3 .code
      [https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02]
 
      
-     link tải app https://www.matrixrobotics.com/adv-program-resources
+     
  # 4. openmv
        [https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02]
 
        
-        link tải app https://openmv.io/pages/download  
-# CÁC LÀM CHÍNH 
+# CÁC HÀM CHÍNH 
+ git init
+git add .
+git commit -m "Upload folder to GitHub"
+git branch -M main
+git remote add origin https://github.com/ddhhieu/CCVA-HSRL-B6-02.git
+git push -u origin main
