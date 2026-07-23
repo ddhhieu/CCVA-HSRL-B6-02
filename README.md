@@ -171,15 +171,7 @@ void DiNguocChieuKimDongHo();       // Chạy ngược chiều kim đồng hồ
 ```
 ---
 
-#### Hiệu chỉnh PID
 
-| Hệ số | Tăng quá mức | Giảm quá mức |
-|:------|:-------------|:-------------|
-| `Kp` | Dao động quanh tường | Phản ứng chậm, lệch xa |
-| `Ki` | Overshoot, mất ổn định | Sai số xác lập không triệt tiêu |
-| `Kd` | Nhạy nhiễu cảm biến | Rung khi vào cua |
-
-Quy trình khuyến nghị: tăng `Kp` đến khi bắt đầu dao động → thêm `Kd` để dập dao động → thêm `Ki` nếu còn sai số xác lập.
 
 ### Vòng 2 — Obstacle Challenge
 
