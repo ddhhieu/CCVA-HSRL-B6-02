@@ -220,6 +220,7 @@ Camera không tự động gửi gì nếu không nhận được lệnh.
 | Camera | 4 byte dữ liệu khối màu | Mini R4 |
 
 Sau khi nhận 'L', camera gọi green_led.on() — bật đèn LED xanh trên board. Hết, không làm gì thêm, không trả dữ liệu về.
+
 Sau khi nhận lệnh `'G'`, camera trả về một gói gồm 4 giá trị:
 
 | Vị trí | Tên | Ý nghĩa | Sử dụng |
