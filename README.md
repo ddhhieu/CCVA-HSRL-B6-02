@@ -46,14 +46,7 @@ cd CCVA-HSRL-B6-02
 
        
 # CÁC HÀM CHÍNH 
- # Khởi tạo kho chứa (Repository) mới tại thư mục hiện tại
-git init
 
-# Kết nối với Repository trên GitHub
-git remote add origin <URL_GITHUB>
-
-# Kiểm tra các đường dẫn remote đang kết nối
-git remote -v
 
 
 
