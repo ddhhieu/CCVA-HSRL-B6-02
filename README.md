@@ -75,7 +75,9 @@ Thực hiện theo hướng dẫn lắp ráp chi tiết:
 [Slide lắp ráp (PDF)](https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf)
 
 ### 4. Nạp chương trình cho MATRIX Mini R4
+
 **4.1. Cài đặt thư viện**
+
 Trước khi nạp, đảm bảo đã cài đủ các thư viện sau trong Arduino IDE:
 
 | Thư viện | Cách cài |
@@ -85,14 +87,7 @@ Trước khi nạp, đảm bảo đã cài đủ các thư viện sau trong Ardu
 
 **4.2. Mở mã nguồn**
 
-Mở Arduino IDE → **File → Open...** → chọn file `.ino` tương ứng với vòng thi:
-
-| Vòng thi | Đường dẫn file |
-|:---------|:---------------|
-| Open Challenge | `Code/Open_Challenge/Open_Challenge.ino` |
-| Obstacle Challenge | `Code/Obstacle_Challenge/Obstacle_Challenge.ino` |
-
- [Xem mã nguồn trên GitHub](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/Code)
+Mở Arduino IDE → **File → Open...**
 
 **4.3. Cấu hình board**
 
