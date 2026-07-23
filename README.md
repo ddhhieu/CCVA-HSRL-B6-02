@@ -176,39 +176,6 @@ void DiNguocChieuKimDongHo();       // Chạy ngược chiều kim đồng hồ
 
 Robot bám tường bằng laser sensor, đếm vòng bằng color sensor và nhận diện khối màu bằng M-vision camera.
 
-#### Hằng số cấu hình
-
-| Hằng số | Giá trị | Ý nghĩa |
-|:--------|:-------:|:--------|
-| `Y_IGNOR` | 50 | Ngưỡng tọa độ Y tối thiểu để xử lý khối. Khối ở xa hơn sẽ bị bỏ qua |
-| `DOOR` | 12 | Số vạch màu cần đếm để kết thúc lượt chạy |
-| `d` | 19.6 | Chu vi bánh xe (cm), dùng quy đổi góc encoder sang quãng đường |
-
-#### Giới hạn giá trị
-
-```cpp
-float limit(float value, float min, float max);
-```
-
-| Tham số | Đơn vị | Mô tả |
-|:--------|:-------|:------|
-| `value` | — | Giá trị cần giới hạn |
-| `min` | — | Cận dưới |
-| `max` | — | Cận trên |
-
-Trả về giá trị đã được kẹp trong khoảng `[min, max]`, dùng trước khi điều khiển góc lái.
-
-#### Điều khiển servo lái
-
-```cpp
-void servoMotor(float value, float l = 70);
-```
-| Tham số | Đơn vị | Mô tả |
-|:--------|:-------|:------|
-| `value` | độ | Góc muốn xoay (`0` = đi thẳng) |
-| `l` | độ | Giới hạn góc xoay tối đa, mặc định 70 |
-
-
 #### Giao tiếp với camera OpenMV
 
 Mini R4 đóng vai trò chủ động: gửi lệnh trước, camera trả dữ liệu sau.
@@ -263,8 +230,40 @@ Khung hình QVGA: **320 × 240** pixel, gốc tọa độ ở góc trên trái.
 | `x` | 0 – 320 | Vị trí ngang. Tâm khung hình là `160`. Nhỏ hơn = khối lệch trái, lớn hơn = lệch phải |
 | `y` | 0 – 240 | Vị trí dọc. Càng lớn = khối càng gần robot |
 
-Khi có nhiều khối trong khung hình, camera chỉ trả về khối có `y` lớn nhất
-(gần robot nhất).
+
+#### Hằng số cấu hình
+
+| Hằng số | Giá trị | Ý nghĩa |
+|:--------|:-------:|:--------|
+| `Y_IGNOR` | 50 | Ngưỡng tọa độ Y tối thiểu để xử lý khối. Khối ở xa hơn sẽ bị bỏ qua |
+| `DOOR` | 12 | Số vạch màu cần đếm để kết thúc lượt chạy |
+| `d` | 19.6 | Chu vi bánh xe (cm), dùng quy đổi góc encoder sang quãng đường |
+
+#### Giới hạn giá trị
+
+```cpp
+float limit(float value, float min, float max);
+```
+
+| Tham số | Đơn vị | Mô tả |
+|:--------|:-------|:------|
+| `value` | — | Giá trị cần giới hạn |
+| `min` | — | Cận dưới |
+| `max` | — | Cận trên |
+
+Trả về giá trị đã được kẹp trong khoảng `[min, max]`, dùng trước khi điều khiển góc lái.
+
+#### Điều khiển servo lái
+
+```cpp
+void servoMotor(float value, float l = 70);
+```
+| Tham số | Đơn vị | Mô tả |
+|:--------|:-------|:------|
+| `value` | độ | Góc muốn xoay (`0` = đi thẳng) |
+| `l` | độ | Giới hạn góc xoay tối đa, mặc định 70 |
+
+
 
 ## License
 
