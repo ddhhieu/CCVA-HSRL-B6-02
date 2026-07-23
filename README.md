@@ -70,40 +70,7 @@ git commit -m "Upload folder to GitHub"
 git branch -M main
 git remote add origin https://github.com/ddhhieu/CCVA-HSRL-B6-02.git
 git push -u origin main
-    # Sửa lỗi 
-# 1. Khởi tạo lại
-git init
 
-# 2. Thêm file và commit
-git add .
-git commit -m "Upload lai du an"
 
-# 3. Đặt nhánh main
-git branch -M main
 
-# 4. Đặt lại remote link
-git remote remove origin
-git remote add origin https://github.com/ddhhieu/CCVA-HSRL-B6-02.git
-
-# 5. Kéo dữ liệu trên web về kết hợp (tránh lỗi xung đột)
-git pull origin main --allow-unrelated-historie 
-
-# 1. Khởi tạo lại
-git init
-
-# 2. Thêm file và commit
-git add .
-git commit -m "Upload lai du an"
-
-# 3. Đặt nhánh main
-git branch -M main
-
-# 4. Đặt lại remote link
-git remote remove origin
-git remote add origin https://github.com/ddhhieu/CCVA-HSRL-B6-02.git
-
-# 5. Kéo dữ liệu trên web về kết hợp (tránh lỗi xung đột)
-git pull origin main --allow-unrelated-histories
-
-# 6. Push lên lại
-git push -u origin main 
+ 
