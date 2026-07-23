@@ -26,29 +26,29 @@ Nhóm **B6-02** bao gồm các thành viên sau
 - Đảm bảo tính lặp lại và ổn định của robot qua nhiều lượt chạy thử nghiệm.
 - Xây dựng bộ tài liệu kỹ thuật đầy đủ: hướng dẫn lắp ráp, mã nguồn có chú thích, hình ảnh và video minh họa.  
 ---
+
 ## Hệ Thống Phần Cứng
 
-Từ các mục tiêu trên, nhóm xác định robot cần đáp ứng ba yêu cầu chức năng: đo khoảng cách tới tường để bám tường ổn định, nhận biết vạch màu để xác định chiều chạy và đếm vòng, và nhận diện khối màu để điều hướng tránh vật. Trên cơ sở đó, nhóm lựa chọn các thiết bị trong bộ MATRIX WRO Future Innovators Set V2 như sau.
+Để đạt các mục tiêu trên, robot cần đo được khoảng cách tới tường, nhận biết vạch màu trên sân và phát hiện khối màu. Nhóm sử dụng các thiết bị có sẵn trong bộ MATRIX WRO Future Innovators Set V2:
 
 ### Cảm biến
 
-| Thiết bị | SL | Đáp ứng mục tiêu | Lý do lựa chọn |
-|:---------|:--:|:-----------------|:---------------|
-| Laser sensor V2 | 2 | Bám tường PID (Open Challenge) | Sai số nhỏ, tần số đọc cao, ít nhiễu hơn cảm biến siêu âm — phù hợp làm tín hiệu phản hồi cho vòng điều khiển PID |
-| Color sensor V3 | 1 | Xác định chiều chạy, đếm vòng | Phân biệt được vạch cam / xanh dương trên sân thi WRO |
-| M-vision camera | 1 | Nhận diện khối đỏ / xanh (Obstacle Challenge) | Xử lý ảnh độc lập trên camera, giảm tải cho Mini R4, giao tiếp UART đơn giản |
+| Thiết bị | SL | Chức năng |
+|:---------|:--:|:----------|
+| Laser sensor V2 | 2 | Đo khoảng cách tới tường hai bên, dùng cho thuật toán bám tường PID |
+| Color sensor V3 | 1 | Nhận biết vạch màu trên sân để xác định chiều chạy và đếm vòng |
+| M-vision camera | 1 | Nhận diện khối màu đỏ / xanh trong vòng Obstacle Challenge |
 
 ### Cơ cấu chấp hành
 
-| Thiết bị | SL | Đáp ứng mục tiêu | Lý do lựa chọn |
-|:---------|:--:|:-----------------|:---------------|
-| Động cơ DC | — | Di chuyển, đo quãng đường | Tích hợp encoder cho phép điều khiển quãng đường theo cm |
-| Servo | — | Điều khiển góc lái | Đáp ứng nhanh, điều khiển góc chính xác cho cơ cấu lái |
+| Thiết bị | Chức năng |
+|:---------|:----------|
+| Động cơ DC | Truyền động di chuyển, encoder đo quãng đường |
+| Servo | Điều khiển góc lái |
 
 ### Bộ điều khiển
 
-**MATRIX Mini R4** — xử lý toàn bộ vòng điều khiển PID, đọc cảm biến, nhận dữ liệu camera qua UART và điều khiển động cơ.
-
+**MATRIX Mini R4** — đọc dữ liệu cảm biến, chạy vòng điều khiển PID, nhận tín hiệu từ camera và điều khiển động cơ.
 ## Hướng dẫn sử dụng
 
 ### 1. Chuẩn bị môi trường vận hành 
