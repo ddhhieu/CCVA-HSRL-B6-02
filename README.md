@@ -37,17 +37,17 @@ cd CCVA-HSRL-B6-02
 ```
 
  # 2. lắp ráp robot
-    [https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf]
+    https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf
 
     
 
  # 3 .code
-     [https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02]
+     https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02
 
      
      
  # 4. openmv
-       [https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02]
+       https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02
 
        
 # CÁC HÀM CHÍNH 
