@@ -112,12 +112,12 @@ Mở Arduino IDE → **File → Open...**
 
 >  Nếu Arduino IDE báo `No such file or directory`, kiểm tra lại xem đã cài đủ thư viện ở bước 4.1 chưa.
      
-## CÁC HÀM CHÍNH 
-### API các hàm điều khiển 
+# CÁC HÀM CHÍNH 
+## API các hàm điều khiển 
 
-#### Vòng 1 Open Challenge 
+### Vòng 1 Open Challenge 
 Các tham số được cài đặt trong `loop()`.
-##### Bám tường phải
+#### Bám tường phải
 ```cpp
 void Di_line_phai_voi_toc_do_n_quang_duong_n_Kp_n_Ki_n_Kd_n_cach_tuong_n(
     float speed, float cm, float Kp, float Ki, float Kd, float mm);
@@ -130,7 +130,7 @@ void Di_line_phai_voi_toc_do_n_quang_duong_n_Kp_n_Ki_n_Kd_n_cach_tuong_n(
 | `Kp`, `Ki`, `Kd` | — | Hệ số bộ điều khiển PID |
 | `mm` | mm | Khoảng cách mong muốn tới tường |
 
-##### Bám tường trái
+#### Bám tường trái
 
 ```cpp
 void Di_line_trai_toc_do_n_cm_n_Kp_n_Ki_n_Kd_n_cach_tuong_n(
@@ -139,7 +139,7 @@ void Di_line_trai_toc_do_n_cm_n_Kp_n_Ki_n_Kd_n_cach_tuong_n(
 
 Tham số tương tự bám tường phải.
 
-##### Đi giữa hai tường
+#### Đi giữa hai tường
 
 ```cpp
 void Di_line_giua_voi_toc_do_n_quang_duong_n_Kp_n_Ki_n_Kd_n(
@@ -152,7 +152,7 @@ void Di_line_giua_voi_toc_do_n_quang_duong_n_Kp_n_Ki_n_Kd_n(
 | `cm_giua` | cm | Quãng đường cần đi |
 | `Kp`, `Ki`, `Kd` | — | Hệ số PID (sai lệch = hiệu khoảng cách hai bên) |
 
-##### Đi thẳng không bám tường
+#### Đi thẳng không bám tường
 
 ```cpp
 void Di_mu_n_voi_toc_do_n(float cm, float speed);
@@ -171,7 +171,7 @@ void DiNguocChieuKimDongHo();       // Chạy ngược chiều kim đồng hồ
 ```
 ---
 
-##### Hiệu chỉnh PID
+#### Hiệu chỉnh PID
 
 | Hệ số | Tăng quá mức | Giảm quá mức |
 |:------|:-------------|:-------------|
@@ -181,7 +181,7 @@ void DiNguocChieuKimDongHo();       // Chạy ngược chiều kim đồng hồ
 
 Quy trình khuyến nghị: tăng `Kp` đến khi bắt đầu dao động → thêm `Kd` để dập dao động → thêm `Ki` nếu còn sai số xác lập.
 
-#### Vòng 2 — Obstacle Challenge
+### Vòng 2 — Obstacle Challenge
 
 Robot bám tường bằng laser sensor, đếm vòng bằng color sensor và nhận diện khối màu bằng M-vision camera.
 
