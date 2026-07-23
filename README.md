@@ -22,43 +22,47 @@ Nhóm **B6-02** bao gồm các thành viên sau
 
 ##  Giới Thiệu Dự Án
 
-Dự án **CCVA-HSRL-B6-02** tập trung nghiên cứu, phát triển và triển khai các giải pháp phần mềm/mô hình ứng dụng đáp ứng yêu cầu của chuỗi dự án CCVA-HSRL.
+Dự án **CCVA-HSRL-B6-02** phát triển robot tự hành trên nền tảng MATRIX Mini R4, sử dụng bộ công cụ MATRIX WRO Future Innovators Set V2. Robot thực hiện nhiệm vụ di chuyển theo luật thi đấu bảng B6 - WRO 2026 với hai vòng thi Open Challenge và Obstacle Challenge, sử dụng laser sensor V2, color sensor V3 và M-vision camera.
 
 * **Mục tiêu chính:**
-  
-
+- Xây dựng robot tự hành trên nền tảng MATRIX Mini R4 đáp ứng luật thi bảng B6 - WRO 2026.
+- Hoàn thành vòng **Open Challenge**: bám tường ổn định bằng laser sensor V2 với bộ điều khiển PID, xác định chiều chạy qua color sensor V3, chạy đủ 3 vòng sân.
+- Hoàn thành vòng **Obstacle Challenge**: nhận diện khối đỏ/xanh bằng M-vision camera và điều hướng tránh vật theo đúng quy tắc.
+- Đảm bảo tính lặp lại và ổn định của robot qua nhiều lượt chạy thử nghiệm.
+- Xây dựng bộ tài liệu kỹ thuật đầy đủ: hướng dẫn lắp ráp, mã nguồn có chú thích, hình ảnh và video minh họa.  
 ---
+## Hướng dẫn sử dụng
 
+### 1. Tải dự án về máy
 
-# 1. Tải dự án về máy
-[https://github.com/ddhhieu/CCVA-HSRL-B6-02.git](https://github.com/ddhhieu/CCVA-HSRL-B6-02.git)
-```cpp
+```bash
+git clone https://github.com/ddhhieu/CCVA-HSRL-B6-02.git
 cd CCVA-HSRL-B6-02
 ```
 
- # 2. lắp ráp robot
-    https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf
+### 2. Lắp ráp robot
 
-    
+Thực hiện theo hướng dẫn lắp ráp chi tiết:
 
- # 3 .code
-     https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02
+[📄 Slide lắp ráp (PDF)](https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf)
 
-     
-     
- # 4. openmv
-       https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02
+### 3. Nạp chương trình cho MATRIX Mini R4
 
+Mở mã nguồn bằng Arduino IDE, biên dịch và nạp cho robot:
+
+[📁 Mã nguồn điều khiển](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/Code)
+
+### 4. Nạp chương trình cho camera OpenMV
+
+Kết nối camera qua USB, mở OpenMV IDE và nạp script:
+
+[📁 Chương trình OpenMV](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/OpenMV)
        
 # CÁC HÀM CHÍNH 
 ## API các hàm điều khiển
-
 ### Vòng 1
-
 Các tham số được cài đặt trong `loop()`.
-
 #### Bám tường phải
-
 ```cpp
 void Di_line_phai_voi_toc_do_n_quang_duong_n_Kp_n_Ki_n_Kd_n_cach_tuong_n(
     float speed, float cm, float Kp, float Ki, float Kd, float mm);
