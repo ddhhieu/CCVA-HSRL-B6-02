@@ -27,7 +27,7 @@ Dự án **CCVA-HSRL-B6-02** tập trung nghiên cứu, phát triển và triể
 
 ---
 
-##  Lý Do Sử Dụng GitHub
+##  Sử Dụng GitHub
 
 Nhóm **B6-02** lựa chọn **GitHub** làm nền tảng quản lý mã nguồn và hợp tác phát triển nhờ các ưu điểm vượt trội sau:
 
