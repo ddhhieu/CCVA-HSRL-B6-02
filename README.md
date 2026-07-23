@@ -232,13 +232,6 @@ if (camData[2] > Y_IGNOR) {      // Chỉ xử lý khối đủ gần
 }
 ```
 
-#### Hằng số cấu hình
-
-| Hằng số | Giá trị | Ý nghĩa |
-|:--------|:-------:|:--------|
-| `Y_IGNOR` | 50 | Khối có `camData[2]` nhỏ hơn giá trị này là ở quá xa, bỏ qua |
-| `DOOR` | 12 | Số vạch màu cần đếm để kết thúc lượt chạy |
-| `d` | 19.6 | Chu vi bánh xe (cm), quy đổi góc encoder sang quãng đường |
 
 #### Các hàm chính
 
