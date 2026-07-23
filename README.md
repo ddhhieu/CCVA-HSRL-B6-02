@@ -199,7 +199,7 @@ thì cộng 1. Đếm đủ 12 vạch là xong 3 vòng, cho xe dừng.
 **4. Qua góc sa bàn** — Khi tới góc, xe phải rẽ, đồng thời quét camera xem
 đoạn tiếp theo có khối nào không.
 
-#### Giao tiếp với camera
+**5. Giao tiếp với camera**
 
 Mini R4 hỏi trước, camera trả lời sau. Camera không tự gửi gì cả.
 
@@ -231,19 +231,7 @@ if (camData[2] > Y_IGNOR) {      // Chỉ xử lý khối đủ gần
     }
 }
 ```
-
-
-#### Các hàm chính
-
-**Giới hạn giá trị**
-
-```cpp
-float limit(float value, float min, float max);
-```
-
-Kẹp `value` trong khoảng `[min, max]`. Dùng trước khi điều khiển góc lái.
-
-**Điều khiển servo lái**
+**6. Điều khiển servo lái**
 
 ```cpp
 void servoMotor(float value, float l = 70);
