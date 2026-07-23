@@ -49,12 +49,12 @@ Nhóm **B6-02** lựa chọn **GitHub** làm nền tảng quản lý mã nguồn
 # 1. Tải dự án về máy
 [https://github.com/ddhhieu/CCVA-HSRL-B6-02.git](https://github.com/ddhhieu/CCVA-HSRL-B6-02.git)
 cd CCVA-HSRL-B6-02
- # 2. lắp dáp robot
-    [Đi tới thư mục src](https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf)
+ # 2. lắp ráp robot
+    [https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf]
     link tải https://www.bricklink.com/v3/studio/download.page
  # 3 .code
-     [Đi tới thư mục src](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02)
+     [https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02]
      link tải app https://www.matrixrobotics.com/adv-program-resources
  # 4. openmv
-       [Đi tới thư mục src](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02)
+       [https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/CCVA-HSRL-B6-02]
         link tải app https://openmv.io/pages/download  
