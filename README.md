@@ -75,17 +75,38 @@ Thực hiện theo hướng dẫn lắp ráp chi tiết:
 [Slide lắp ráp (PDF)](https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf)
 
 ### 4. Nạp chương trình cho MATRIX Mini R4
+**4.1. Cài đặt thư viện**
+Trước khi nạp, đảm bảo đã cài đủ các thư viện sau trong Arduino IDE:
 
-Mở mã nguồn bằng Arduino IDE, biên dịch và nạp cho robot:
+| Thư viện | Cách cài |
+|:---------|:---------|
+| Matrix Mini R4 | Tải từ [MATRIX Robotics](https://www.matrixrobotics.com/adv-program-resources) → **Sketch → Include Library → Add .ZIP Library...** |
+| `MiniR4SmartCamReader.h` | Copy thủ công vào `Documents/Arduino/libraries/Matrix Mini R4/src/module/sensor/` |
 
-[ Mã nguồn điều khiển](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/Code)
+**4.2. Mở mã nguồn**
 
-### . Nạp chương trình cho camera OpenMV
+Mở Arduino IDE → **File → Open...** → chọn file `.ino` tương ứng với vòng thi:
 
-Kết nối camera qua USB, mở OpenMV IDE và nạp script:
+| Vòng thi | Đường dẫn file |
+|:---------|:---------------|
+| Open Challenge | `Code/Open_Challenge/Open_Challenge.ino` |
+| Obstacle Challenge | `Code/Obstacle_Challenge/Obstacle_Challenge.ino` |
 
-[ Chương trình OpenMV](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/OpenMV)
-       
+ [Xem mã nguồn trên GitHub](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/Code)
+
+**4.3. Cấu hình board**
+
+- **Tools → Board** → chọn board tương ứng với MATRIX Mini R4
+- **Tools → Port** → chọn cổng COM mà robot đang kết nối
+
+**4.4. Biên dịch và nạp**
+
+- Bấm **Verify** (✓) để biên dịch, kiểm tra không có lỗi
+- Bấm **Upload** (→) để nạp chương trình vào robot
+- Chờ tới khi hiện thông báo `Done uploading`
+
+>  Nếu Arduino IDE báo `No such file or directory`, kiểm tra lại xem đã cài đủ thư viện ở bước 4.1 chưa.
+     
 # CÁC HÀM CHÍNH 
 ## API các hàm điều khiển 
 
