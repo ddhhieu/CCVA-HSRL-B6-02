@@ -84,8 +84,9 @@ Kết nối camera qua USB, mở OpenMV IDE và nạp script:
 [📁 Chương trình OpenMV](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/OpenMV)
        
 # CÁC HÀM CHÍNH 
-## API các hàm điều khiển
-### Vòng 1 
+## API các hàm điều khiển 
+
+### Vòng 1 Open Challenge 
 Các tham số được cài đặt trong `loop()`.
 #### Bám tường phải
 ```cpp
@@ -151,7 +152,7 @@ void DiNguocChieuKimDongHo();       // Chạy ngược chiều kim đồng hồ
 | `Kd` | Nhạy nhiễu cảm biến | Rung khi vào cua |
 
 Quy trình khuyến nghị: tăng `Kp` đến khi bắt đầu dao động → thêm `Kd` để dập dao động → thêm `Ki` nếu còn sai số xác lập.
-
+### Vòng 2 bstacle Challenge
 ---
 
 ## License
