@@ -220,23 +220,48 @@ Khi robot tới góc sa bàn, thực hiện quét camera tìm khối tiếp theo
 
 #### Giao tiếp với camera OpenMV
 
-Camera chạy độc lập, nhận lệnh 1 byte qua UART:
+Mini R4 đóng vai trò chủ động: gửi lệnh trước, camera trả dữ liệu sau.
+Camera không tự động gửi gì nếu không nhận được lệnh.
 
-| Lệnh | Ý nghĩa |
-|:-----|:--------|
-| `'G'` | Yêu cầu chụp và trả về khối màu gần nhất |
-| `'L'` | Bật đèn LED xanh |
-
-Dữ liệu trả về gồm 4 giá trị lưu trong `camData[]`:
-
-| Chỉ số | Ý nghĩa |
-|:-------|:--------|
-| `camData[0]` | ID màu — `0` = đỏ, `1` = xanh, `255` = không thấy khối |
-| `camData[1]` | Tọa độ `x` tâm khối |
-| `camData[2]` | Tọa độ `y` tâm khối |
-| `camData[3]` | Diện tích khối |
+| Bên gửi | Nội dung | Bên nhận |
+|:--------|:---------|:---------|
+| Mini R4 | 1 byte lệnh (`'G'` hoặc `'L'`) | Camera |
+| Camera | 4 byte dữ liệu khối màu | Mini R4 |
 
 
+Sau khi nhận lệnh `'G'`, camera trả về một gói gồm 4 giá trị:
+
+| Vị trí | Tên | Ý nghĩa |
+|:------:|:----|:--------|
+| 0 | ID màu | `0` = đỏ, `1` = xanh, `255` = không thấy khối |
+| 1 | `x` | Tọa độ ngang tâm khối |
+| 2 | `y` | Tọa độ dọc tâm khối (càng lớn = càng gần robot) |
+| 3 | Diện tích | Kích thước khối trong khung hình |
+
+Mini R4 lưu gói tin này vào mảng `camData[]`.
+
+**Đọc và xử lý:**
+
+```cpp
+// Kiểm tra có thấy khối không
+if (camData[0] == 255) {
+    // Không có khối nào trong tầm nhìn
+}
+else if (camData[0] == 0) {
+    // Khối đỏ → tránh sang trái
+}
+else if (camData[0] == 1) {
+    // Khối xanh → tránh sang phải
+}
+```
+
+**Lọc khối ở xa:**
+
+```cpp
+if (camData[2] > Y_IGNOR) {
+    // Chỉ xử lý khi khối đủ gần (y > 50)
+}
+```
 
 ## License
 
