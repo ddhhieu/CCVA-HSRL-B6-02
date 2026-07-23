@@ -210,14 +210,6 @@ void servoMotor(float value, float l = 70);
 | `l` | độ | Giới hạn góc xoay tối đa, mặc định 70 |
 
 
-#### Đếm vạch màu
-
-```cpp
-void line_check();
-```
-
-Đọc color sensor, tăng biến đếm khi robot đi qua vạch xanh hoặc cam. Có kiểm tra quãng đường tối thiểu giữa hai lần đếm để tránh đếm trùng.
-
 #### Xử lý góc sa bàn
 
 ```cpp
@@ -226,16 +218,25 @@ bool turn();
 
 Khi robot tới góc sa bàn, thực hiện quét camera tìm khối tiếp theo và điều chỉnh hướng di chuyển. Trả về `true` nếu đã tới góc sa bàn.
 
-#### Di chuyển theo quãng đường
+#### Giao tiếp với camera OpenMV
 
-```cpp
-bool dichuyen_cm(float quang_duong);
-```
-| Tham số | Đơn vị | Mô tả |
-|:--------|:-------|:------|
-| `quang_duong` | cm | Quãng đường cần di chuyển, đo bằng encoder |
+Camera chạy độc lập, nhận lệnh 1 byte qua UART:
 
-Trả về `false` nếu bị ngắt giữa chừng do gặp góc sa bàn.
+| Lệnh | Ý nghĩa |
+|:-----|:--------|
+| `'G'` | Yêu cầu chụp và trả về khối màu gần nhất |
+| `'L'` | Bật đèn LED xanh |
+
+Dữ liệu trả về gồm 4 giá trị lưu trong `camData[]`:
+
+| Chỉ số | Ý nghĩa |
+|:-------|:--------|
+| `camData[0]` | ID màu — `0` = đỏ, `1` = xanh, `255` = không thấy khối |
+| `camData[1]` | Tọa độ `x` tâm khối |
+| `camData[2]` | Tọa độ `y` tâm khối |
+| `camData[3]` | Diện tích khối |
+
+
 
 ## License
 
