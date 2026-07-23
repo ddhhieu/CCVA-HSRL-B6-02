@@ -41,47 +41,50 @@ Dự án **CCVA-HSRL-B6-02** phát triển robot tự hành trên nền tảng M
 ---
 ## Hướng dẫn sử dụng
 
-### 1. Tải dự án về máy
+### 1. Chuẩn bị môi trường vận hành 
 
-```bash
-git clone https://github.com/ddhhieu/CCVA-HSRL-B6-02.git
-cd CCVA-HSRL-B6-02
-```
-### 2. Cài Đặt Môi Trường Phát Triển
-
-Để lập trình và vận hành robot, cần cài đặt các phần mềm và thư viện theo các bước sau.
-
-### 3. Cài đặt Arduino IDE
+**Cài đặt Arduino IDE**
 
 Truy cập trang tài nguyên của MATRIX Robotics để tải Arduino IDE và thư viện MATRIX Mini R4:
-
 https://www.matrixrobotics.com/adv-program-resources
 
-### 4. Cài đặt OpenMV IDE
+**Cài đặt OpenMV IDE**
 
 Sau khi cài đặt Arduino IDE, tiếp tục cài đặt OpenMV IDE để lập trình cho camera OpenMV.
-
 Hướng dẫn cài đặt:
 
 https://wro-learn.org/en_us/wiki/m-vision-camera
 
-### 5. Lắp ráp robot
+### 2. Tải dự án về máy
+
+**Cách 1: Dùng Git**
+
+Mở terminal tại thư mục muốn lưu dự án, chạy:
+
+```bash
+git clone https://github.com/ddhhieu/CCVA-HSRL-B6-02.git
+```
+**Cách 2: Tải ZIP** (không cần cài Git)
+
+Vào https://github.com/ddhhieu/CCVA-HSRL-B6-02 → bấm **Code** → **Download ZIP** → giải nén.
+
+### 3. Lắp ráp robot
 
 Thực hiện theo hướng dẫn lắp ráp chi tiết:
 
-[📄 Slide lắp ráp (PDF)](https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf)
+[Slide lắp ráp (PDF)](https://github.com/ddhhieu/CCVA-HSRL-B6-02/blob/main/Slide%20l%E1%BA%AFp%20r%C3%A1p.pdf)
 
-### 6. Nạp chương trình cho MATRIX Mini R4
+### 4. Nạp chương trình cho MATRIX Mini R4
 
 Mở mã nguồn bằng Arduino IDE, biên dịch và nạp cho robot:
 
-[📁 Mã nguồn điều khiển](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/Code)
+[ Mã nguồn điều khiển](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/Code)
 
-### 7. Nạp chương trình cho camera OpenMV
+### . Nạp chương trình cho camera OpenMV
 
 Kết nối camera qua USB, mở OpenMV IDE và nạp script:
 
-[📁 Chương trình OpenMV](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/OpenMV)
+[ Chương trình OpenMV](https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/OpenMV)
        
 # CÁC HÀM CHÍNH 
 ## API các hàm điều khiển 
