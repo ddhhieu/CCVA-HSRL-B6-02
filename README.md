@@ -176,8 +176,6 @@ void DiNguocChieuKimDongHo();       // Chạy ngược chiều kim đồng hồ
 
 Robot bám tường bằng laser sensor, đếm vòng bằng color sensor và nhận diện khối màu bằng M-vision camera.
 
-#### Giao tiếp với camera OpenMV
-
 Mini R4 đóng vai trò chủ động: gửi lệnh trước, camera trả dữ liệu sau.
 Camera không tự động gửi gì nếu không nhận được lệnh.
 
@@ -262,7 +260,6 @@ void servoMotor(float value, float l = 70);
 |:--------|:-------|:------|
 | `value` | độ | Góc muốn xoay (`0` = đi thẳng) |
 | `l` | độ | Giới hạn góc xoay tối đa, mặc định 70 |
-
 
 
 ## License
