@@ -53,13 +53,9 @@ cd CCVA-HSRL-B6-02
 
 ### 1. Cài đặt Arduino IDE
 
-Truy cập trang tài nguyên của MATRIX Robotics:
+Truy cập trang tài nguyên của MATRIX Robotics để tải Arduino IDE và thư viện MATRIX Mini R4:
 
 https://www.matrixrobotics.com/adv-program-resources
-
-Tải và cài đặt Arduino IDE theo hướng dẫn.
-
-Để biết chi tiết cách cài đặt và sử dụng thư viện MATRIX Mini R4, mở tài liệu `MATRIX_R4_Guidebook_EN_V3.0.pdf`, sau đó đến **Mục 2.11.2 – Arduino Programming & Library Overview (Trang 45)** và thực hiện theo hướng dẫn.
 
 ### 2. Cài đặt OpenMV IDE
 
@@ -68,10 +64,6 @@ Sau khi cài đặt Arduino IDE, tiếp tục cài đặt OpenMV IDE để lập
 Hướng dẫn cài đặt:
 
 https://wro-learn.org/en_us/wiki/m-vision-camera
-
-Thay vì sử dụng mẫu OpenMV trong link trên, truy cập thư mục OpenMV của nhóm và cài đặt theo hướng dẫn tương tự:
-
-https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/OpenMV
 
 ### 2. Lắp ráp robot
 
@@ -93,7 +85,7 @@ Kết nối camera qua USB, mở OpenMV IDE và nạp script:
        
 # CÁC HÀM CHÍNH 
 ## API các hàm điều khiển
-### Vòng 1
+### Vòng 1 
 Các tham số được cài đặt trong `loop()`.
 #### Bám tường phải
 ```cpp
