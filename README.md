@@ -31,6 +31,14 @@ Dự án **CCVA-HSRL-B6-02** phát triển robot tự hành trên nền tảng M
 - Đảm bảo tính lặp lại và ổn định của robot qua nhiều lượt chạy thử nghiệm.
 - Xây dựng bộ tài liệu kỹ thuật đầy đủ: hướng dẫn lắp ráp, mã nguồn có chú thích, hình ảnh và video minh họa.  
 ---
+## Hệ Thống Cảm Biến
+
+- Hai laser sensor V2
+- Color sensor V3
+- M-vision camera
+- Động cơ DC
+- Servo
+---
 ## Hướng dẫn sử dụng
 
 ### 1. Tải dự án về máy
@@ -39,6 +47,31 @@ Dự án **CCVA-HSRL-B6-02** phát triển robot tự hành trên nền tảng M
 git clone https://github.com/ddhhieu/CCVA-HSRL-B6-02.git
 cd CCVA-HSRL-B6-02
 ```
+## Cài Đặt Môi Trường Phát Triển
+
+Để lập trình và vận hành robot, cần cài đặt các phần mềm và thư viện theo các bước sau.
+
+### 1. Cài đặt Arduino IDE
+
+Truy cập trang tài nguyên của MATRIX Robotics:
+
+https://www.matrixrobotics.com/adv-program-resources
+
+Tải và cài đặt Arduino IDE theo hướng dẫn.
+
+Để biết chi tiết cách cài đặt và sử dụng thư viện MATRIX Mini R4, mở tài liệu `MATRIX_R4_Guidebook_EN_V3.0.pdf`, sau đó đến **Mục 2.11.2 – Arduino Programming & Library Overview (Trang 45)** và thực hiện theo hướng dẫn.
+
+### 2. Cài đặt OpenMV IDE
+
+Sau khi cài đặt Arduino IDE, tiếp tục cài đặt OpenMV IDE để lập trình cho camera OpenMV.
+
+Hướng dẫn cài đặt:
+
+https://wro-learn.org/en_us/wiki/m-vision-camera
+
+Thay vì sử dụng mẫu OpenMV trong link trên, truy cập thư mục OpenMV của nhóm và cài đặt theo hướng dẫn tương tự:
+
+https://github.com/ddhhieu/CCVA-HSRL-B6-02/tree/main/OpenMV
 
 ### 2. Lắp ráp robot
 
@@ -131,7 +164,7 @@ Quy trình khuyến nghị: tăng `Kp` đến khi bắt đầu dao động → t
 
 ## License
 
-
+Dự án được phát hành theo giấy phép [MIT](LICENSE).
 
 
  
