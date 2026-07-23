@@ -112,7 +112,6 @@ Mở Arduino IDE → **File → Open...**
 
 >  Nếu Arduino IDE báo `No such file or directory`, kiểm tra lại xem đã cài đủ thư viện ở bước 4.1 chưa.
      
-# CÁC HÀM CHÍNH 
 ## API các hàm điều khiển 
 
 ### Vòng 1 Open Challenge 
