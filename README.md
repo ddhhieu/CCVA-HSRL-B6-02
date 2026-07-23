@@ -35,7 +35,7 @@ Nhóm **B6-02** bao gồm các thành viên sau
 
 | Thiết bị | SL | Chức năng |
 |:---------|:--:|:----------|
-| Laser sensor V2 | 2 | Đo khoảng cách tới tường hai bên, dùng cho thuật toán bám tường PID |
+| Laser sensor V2 | 2 | Đo khoảng cách tới tường hai bên, dùng cho thuật toán bám tường |
 | Color sensor V3 | 1 | Nhận biết vạch màu trên sân để xác định chiều chạy và đếm vòng |
 | M-vision camera | 1 | Nhận diện khối màu đỏ / xanh trong vòng Obstacle Challenge |
 
