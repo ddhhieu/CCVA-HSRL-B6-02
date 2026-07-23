@@ -4,7 +4,8 @@
 [![Repo Status](https://img.shields.io/badge/Status-In_Progress-orange.svg)]()
 [![Team](https://img.shields.io/badge/Team-B6--02-brightgreen.svg)]()
 
-Chào mừng bạn đến với kho lưu trữ chính thức của nhóm **B6-02** thuộc dự án/môn học **CCVA-HSRL**. Nơi đây lưu trữ toàn bộ mã nguồn, tài liệu kĩ thuật, quy trình thử nghiệm và kết quả đạt được của dự án.
+Chương trình điều khiển robot tự hành sử dụng Matrix Mini R4, bộ công cụ MATRIX WRO Future Innovators Set V2. Robot thực hiện nhiệm vụ di chuyển theo luật thi đấu bảng B6 - WRO 2026 với hai vòng thi Open Challenge và Obstacle Challenge, sử dụng laser sensor V2, color sensor V3 và M-vision camera.
+
 
 ---
 ---
@@ -31,14 +32,7 @@ Dự án **CCVA-HSRL-B6-02** phát triển robot tự hành trên nền tảng M
 - Đảm bảo tính lặp lại và ổn định của robot qua nhiều lượt chạy thử nghiệm.
 - Xây dựng bộ tài liệu kỹ thuật đầy đủ: hướng dẫn lắp ráp, mã nguồn có chú thích, hình ảnh và video minh họa.  
 ---
-## Hệ Thống Cảm Biến
 
-- Hai laser sensor V2
-- Color sensor V3
-- M-vision camera
-- Động cơ DC
-- Servo
----
 ## Hướng dẫn sử dụng
 
 ### 1. Chuẩn bị môi trường vận hành 
