@@ -15,7 +15,7 @@ Nhóm **B6-02** bao gồm các thành viên sau
 
 | STT | Họ và tên | Vai trò | GitHub |
 |:---:|:----------|:--------|:-------|
-| 1 | Đỗ Hoàng Hiếu | Leader / Repository Maintainer | [@ddhhieu](https://github.com/ddhhieu) |
+| 1 | Đào Đức Hiếu  | Leader / Repository Maintainer | [@ddhhieu](https://github.com/ddhhieu) |
 | 2 | Huy Nguyễn | Developer / Technical Specialist | [@huynguyen123qn6-prog](https://github.com/huynguyen123qn6-prog) |
 | 3 | Quang Tùng | Developer / Tester | — |
 
@@ -218,24 +218,6 @@ void servoMotor(float value, float l = 70);
 | `value` | độ | Góc muốn xoay (`0` = đi thẳng) |
 | `l` | độ | Giới hạn góc xoay tối đa, mặc định 70 |
 
-#### Bám tường trái
-
-```cpp
-void doduong_laser_trai(float khoang_cach, float kp, float kd);
-```
-
-| Tham số | Đơn vị | Mô tả |
-|:--------|:-------|:------|
-| `khoang_cach` | cm | Khoảng cách mong muốn tới tường trái |
-| `kp`, `kd` | — | Hệ số bộ điều khiển PD |
-
-#### Bám tường phải
-
-```cpp
-void doduong_laser_phai(float khoang_cach, float kp, float kd);
-```
-
-Tham số tương tự bám tường trái, đọc dữ liệu từ laser sensor bên phải.
 
 #### Đếm vạch màu
 
@@ -258,19 +240,11 @@ Khi robot tới góc sa bàn, thực hiện quét camera tìm khối tiếp theo
 ```cpp
 bool dichuyen_cm(float quang_duong);
 ```
-
 | Tham số | Đơn vị | Mô tả |
 |:--------|:-------|:------|
 | `quang_duong` | cm | Quãng đường cần di chuyển, đo bằng encoder |
 
 Trả về `false` nếu bị ngắt giữa chừng do gặp góc sa bàn.
-
-#### Hoàn tất tránh khối
-
-```cpp
-void last_step(bool check = true);
-```
-
 
 ## License
 
