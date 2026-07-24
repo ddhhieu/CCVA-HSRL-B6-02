@@ -17,7 +17,7 @@ Nhóm **B6-02** bao gồm các thành viên sau
 |:---:|:----------|:--------|:-------|
 | 1 | Đào Đức Hiếu  | Leader / Repository Maintainer | [@ddhhieu](https://github.com/ddhhieu) |
 | 2 | Nguyễn Viết Quang Huy | Developer / Technical Specialist | [@huynguyen123qn6-prog](https://github.com/huynguyen123qn6-prog) |
-| 3 | Quang Tùng | Developer / Tester | — |
+| 3 | Đặng Quang Tùng| Developer / Tester |tungkhue1999@gmail.com |
 
 ## Mục tiêu chính: ##
 - Xây dựng robot tự hành trên nền tảng MATRIX Mini R4 đáp ứng luật thi bảng B6 - WRO 2026.
