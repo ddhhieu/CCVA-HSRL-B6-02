@@ -189,7 +189,7 @@ void followRightWall(float khoang_cach, float kp, float kd);
 Hỏi camera có khối không, rồi bẻ lái sang bên tương ứng.
 
 ```cpp
-void servoMotor(float value, float l = 70);
+void steerServo(float value, float l = 70);
 ```
 
 | Tham số | Đơn vị | Mô tả |
